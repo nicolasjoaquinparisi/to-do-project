@@ -8,7 +8,7 @@ const ItemsProvider = (props) => {
         {
             "id": 1,
             "name": "Buy groceries",
-            "completed": false
+            "completed": true
         },
         {
             "id": 2,
@@ -16,6 +16,8 @@ const ItemsProvider = (props) => {
             "completed": false
         }
     ]);
+
+    
 
     return (
         <ItemsContext.Provider

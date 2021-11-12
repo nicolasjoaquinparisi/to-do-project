@@ -1,8 +1,12 @@
 import { useContext } from 'react';
 
-const ToDoItem = ({item, setItemToEdit}) => {
+const ToDoItem = ({item, itemToEdit, setItemToEdit}) => {
 
     const { id, name, completed } = item;
+
+    const handleClick = () => {
+        (itemToEdit.id === item.id) ? setItemToEdit({}) : setItemToEdit(item);
+    }
 
     return (
         <div className="row">
@@ -18,7 +22,7 @@ const ToDoItem = ({item, setItemToEdit}) => {
                     className="text-primary border-0 bg-transparent"
                     type="button"
                     value="Edit"
-                    onClick={() => {setItemToEdit(item)}}
+                    onClick={() => handleClick()}
                 >
                 </input>
             </div>

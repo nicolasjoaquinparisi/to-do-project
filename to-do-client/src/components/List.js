@@ -4,7 +4,7 @@ import { ItemsContext } from '../context/ItemsContext';
 import NewItem from "./NewItem";
 import Item from "./Item";
 
-const List = ({setItemToEdit}) => {
+const List = ({itemToEdit, setItemToEdit}) => {
 
     const { items } = useContext(ItemsContext);
 
@@ -18,6 +18,7 @@ const List = ({setItemToEdit}) => {
                         <Item
                             key={items.id}
                             item={item}
+                            itemToEdit={itemToEdit}
                             setItemToEdit={setItemToEdit}
                         />
                     ))

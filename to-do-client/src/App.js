@@ -13,7 +13,8 @@ function App() {
       <div class="container">
         <div class="row">
           <div class="col">
-            <List 
+            <List
+              itemToEdit={itemToEdit}
               setItemToEdit={setItemToEdit}
             />
           </div>

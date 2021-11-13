@@ -1,5 +1,6 @@
 :root {
-  --orange: #F19F3C;
+  --orange: #F2A03D;
+  --dark-orange: #F29441;
   --font-color: #2D2C40;
 }
 
@@ -8,9 +9,26 @@ body {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ebebeb;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+.btn-primary:hover {
+  background-color: var(--dark-orange);
+  border-color: var(--dark-orange);
+}
+
+header {
+  background-color: var(--orange);
+  padding: 1rem;
+  color: var(--font-color);
+  text-align: center;
 }

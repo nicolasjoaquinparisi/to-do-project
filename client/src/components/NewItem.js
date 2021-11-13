@@ -82,7 +82,7 @@ const NewItem = () => {
 
                 <input
                     type="button"
-                    className="w-auto btn btn-primary"
+                    className="w-25 btn btn-primary"
                     value="Add"
                     onClick={handleClick}
                 />

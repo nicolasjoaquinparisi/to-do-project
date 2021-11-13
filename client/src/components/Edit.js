@@ -57,7 +57,7 @@ const Edit = () => {
 
     return (
         Object.keys(itemToEdit).length > 0 ?
-            <div className="mt-5 p-3 border rounded shadow">
+            <div className="mt-5 p-3 bg-light border rounded shadow">
 
                 {
                     showMessage ?

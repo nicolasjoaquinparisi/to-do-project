@@ -1,5 +1,6 @@
 package com.todoproject.server.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,11 +10,14 @@ import javax.persistence.Id;
 public class Item {
     
     @Id
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="name", nullable = false, length = 150)
     private String name;
 
+    @Column(name="completed")
     private Boolean completed;
 
     Item() {}
@@ -23,27 +27,27 @@ public class Item {
         this.completed = completed;
     }
 
-    public Long GetId() {
+    public Long getId() {
         return this.id;
     }
 
-    public String GetName() {
+    public String getName() {
         return this.name;
     }
 
-    public Boolean GetCompleted() {
+    public Boolean getCompleted() {
         return this.completed;
     }
 
-    public void SetId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void SetName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void SetCompleted(Boolean completed) {
+    public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
 }

@@ -10,16 +10,16 @@ function App() {
 
   return (
     <ItemsProvider>
-      <div class="container">
-        <div class="row">
-          <div class="col">
+      <div className="container">
+        <div className="row">
+          <div className="col">
             <List
               itemToEdit={itemToEdit}
               setItemToEdit={setItemToEdit}
             />
           </div>
 
-          <div class="col">
+          <div className="col">
             {
               Object.keys(itemToEdit).length > 0 ?
               <Edit

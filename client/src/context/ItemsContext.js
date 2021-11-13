@@ -1,28 +1,33 @@
-import { useState, createContext } from "react"
+import { useState, useEffect, createContext } from "react";
+
+import axios from "axios";
 
 export const ItemsContext = createContext();
 
 const ItemsProvider = (props) => {
 
-    const [items, setItems] = useState([
-        {
-            "id": 1,
-            "name": "Buy groceries",
-            "completed": true
-        },
-        {
-            "id": 2,
-            "name": "Prepare weekly report",
-            "completed": false
-        }
-    ]);
+    const [items, setItems] = useState([]);
+    const [response, setResponse] = useState(false);
 
-    
+    useEffect(() => {
+
+        const sendRequest = async() => {
+            const url = `http://localhost:8080/items`;
+            const response = await axios.get(url);
+            
+            setItems(response.data);
+
+            setResponse(false);
+        }
+        sendRequest();
+
+    }, [response])
 
     return (
         <ItemsContext.Provider
             value={{
-                items
+                items,
+                setResponse
             }}
         >
             {props.children}

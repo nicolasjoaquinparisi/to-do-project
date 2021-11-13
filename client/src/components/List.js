@@ -16,7 +16,7 @@ const List = ({itemToEdit, setItemToEdit}) => {
                 {
                     items.map(item => (
                         <Item
-                            key={items.id}
+                            key={item.id}
                             item={item}
                             itemToEdit={itemToEdit}
                             setItemToEdit={setItemToEdit}

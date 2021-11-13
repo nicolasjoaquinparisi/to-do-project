@@ -1,11 +1,20 @@
+import { useContext } from 'react';
+
+import { EditContext } from '../context/EditContext';
+
 import axios from 'axios';
 
-const Item = ({item, itemToEdit, setItemToEdit}) => {
+const Item = ({item}) => {
 
     const { id, name, completed } = item;
 
+    const { itemToEdit, setItemToEdit, setItemTitle } = useContext(EditContext);
+
     const handleClick = () => {
+
         (itemToEdit.id === item.id) ? setItemToEdit({}) : setItemToEdit(item);
+        setItemTitle(item.name);
+
     }
 
     const sendRequest = async() => {

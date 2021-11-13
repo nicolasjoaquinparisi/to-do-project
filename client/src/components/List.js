@@ -1,12 +1,16 @@
 import { useContext } from 'react';
+
 import { ItemsContext } from '../context/ItemsContext';
+import { EditContext } from '../context/EditContext';
 
 import NewItem from "./NewItem";
 import Item from "./Item";
 
-const List = ({itemToEdit, setItemToEdit}) => {
+const List = () => {
 
     const { items } = useContext(ItemsContext);
+
+    const { itemToEdit, setItemToEdit, setItemTitle } = useContext(EditContext);
 
     return (
         <div className="mt-5 p-3 border rounded shadow">
@@ -18,8 +22,6 @@ const List = ({itemToEdit, setItemToEdit}) => {
                         <Item
                             key={item.id}
                             item={item}
-                            itemToEdit={itemToEdit}
-                            setItemToEdit={setItemToEdit}
                         />
                     ))
                 }

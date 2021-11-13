@@ -1,7 +1,7 @@
 import { useState, useContext, Fragment } from 'react';
 import { ItemsContext } from '../context/ItemsContext';
 
-import Error from './Error';
+import Message from './Message';
 
 import axios from 'axios';
 
@@ -16,6 +16,7 @@ const NewItem = () => {
     });
 
     const [error, setError] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
 
     const handleChange = e => {
         setItem({
@@ -30,7 +31,7 @@ const NewItem = () => {
 
             setResponse(true);
             setError(false);
-            
+
             setItem({
                 name: '',
                 completed: false
@@ -45,6 +46,8 @@ const NewItem = () => {
 
     const handleClick = () => {
 
+        setShowMessage(true);
+
         if (item.name.trim() === '') {
             setError(true);
             return;
@@ -57,8 +60,11 @@ const NewItem = () => {
     return (
         <Fragment>
             {
-                error ?
-                <Error />
+                showMessage ?
+                <Message
+                    isError={error}
+                    setShowMessage={setShowMessage}
+                />
                 :
                 null
             }

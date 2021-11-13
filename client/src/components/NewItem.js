@@ -64,6 +64,7 @@ const NewItem = () => {
                 <Message
                     isError={error}
                     setShowMessage={setShowMessage}
+                    successMessage="New item added!"
                 />
                 :
                 null

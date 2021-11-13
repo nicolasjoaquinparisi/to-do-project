@@ -16,7 +16,7 @@ const Item = ({item, itemToEdit, setItemToEdit}) => {
                 completed: !completed
             }
 
-            const url = `http://localhost:8080/items/${id}`; 
+            const url = `http://localhost:8080/items/put/completed/${id}`; 
             const response = await axios.put(url, itemUpdated);
 
             console.log(response);

@@ -32,9 +32,8 @@ public class IndexController {
         return repository.save(newItem);
     }
 
-    @PutMapping("/items/{id}")
+    @PutMapping("/items/put/completed/{id}")
     Item replaceCompleted(@RequestBody Item item, @PathVariable Long id) {
-
       return repository.findById(id)
       .map(oldItem -> {
         oldItem.setCompleted(item.getCompleted());
@@ -44,6 +43,18 @@ public class IndexController {
         item.setId(id);
         return repository.save(item);
       });
+    }
 
+    @PutMapping("/items/put/name/{id}")
+    Item replaceName(@RequestBody Item item, @PathVariable Long id) {
+      return repository.findById(id)
+      .map(oldItem -> {
+        oldItem.setName(item.getName());
+        return repository.save(oldItem);
+      })
+      .orElseGet(() -> {
+        item.setId(id);
+        return repository.save(item);
+      });
     }
 }

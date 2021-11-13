@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Message = ({isError, setShowMessage}) => {
+const Message = ({isError, setShowMessage, successMessage}) => {
 
     useEffect(() => {
         setTimeout(() => {
@@ -12,7 +12,7 @@ const Message = ({isError, setShowMessage}) => {
         isError ?
         <p className="bg-danger text-white p-2 mt-1 mb-2">You must enter the name of the task</p>
         :
-        <p className="bg-success text-white p-2 mt-1 mb-2">New item added!</p>
+        <p className="bg-success text-white p-2 mt-1 mb-2">{successMessage}</p>
     );
 }
  

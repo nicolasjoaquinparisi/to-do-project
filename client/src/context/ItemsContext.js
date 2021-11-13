@@ -21,12 +21,13 @@ const ItemsProvider = (props) => {
         }
         sendRequest();
 
-    }, [response])
+    }, [response]);
 
     return (
         <ItemsContext.Provider
             value={{
                 items,
+                setItems,
                 setResponse
             }}
         >

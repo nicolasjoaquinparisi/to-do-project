@@ -1,4 +1,6 @@
-const ToDoItem = ({item, itemToEdit, setItemToEdit}) => {
+import axios from 'axios';
+
+const Item = ({item, itemToEdit, setItemToEdit}) => {
 
     const { id, name, completed } = item;
 
@@ -6,12 +8,48 @@ const ToDoItem = ({item, itemToEdit, setItemToEdit}) => {
         (itemToEdit.id === item.id) ? setItemToEdit({}) : setItemToEdit(item);
     }
 
+    const sendRequest = async() => {
+        try {
+            const itemUpdated = {
+                id: id,
+                name: name,
+                completed: !completed
+            }
+
+            const url = `http://localhost:8080/items/${id}`; 
+            const response = await axios.put(url, itemUpdated);
+
+            console.log(response);
+        }
+        catch {
+            
+        }
+    }
+
+    const onChangeCheckboxClick = () => {
+
+        sendRequest();
+    }
+
     return (
         <div className="row">
             <div className="col">
                 <div className="form-check">
-                    <input className="form-check-input me-3" type="checkbox" id={id} defaultChecked={completed} value=""/>
-                    <label className="form-check-label" htmlFor={id}>{name}</label>
+                    <input
+                        className="form-check-input me-3"
+                        type="checkbox"
+                        id={id}
+                        defaultChecked={completed}
+                        value=""
+                        onClick={() => onChangeCheckboxClick()}
+                    />
+
+                    <label
+                        className="form-check-label"
+                        htmlFor={id}
+                    >
+                        {name}
+                    </label>
                 </div>
             </div>
 
@@ -28,4 +66,4 @@ const ToDoItem = ({item, itemToEdit, setItemToEdit}) => {
     );
 }
  
-export default ToDoItem;
+export default Item;

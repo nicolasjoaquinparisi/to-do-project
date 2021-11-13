@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,5 +30,20 @@ public class IndexController {
     @PostMapping(value = "/post-item", consumes = MediaType.APPLICATION_JSON_VALUE)
     Item newItem(@RequestBody Item newItem) {
         return repository.save(newItem);
+    }
+
+    @PutMapping("/items/{id}")
+    Item replaceCompleted(@RequestBody Item item, @PathVariable Long id) {
+
+      return repository.findById(id)
+      .map(oldItem -> {
+        oldItem.setCompleted(item.getCompleted());
+        return repository.save(oldItem);
+      })
+      .orElseGet(() -> {
+        item.setId(id);
+        return repository.save(item);
+      });
+
     }
 }

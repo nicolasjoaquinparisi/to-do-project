@@ -62,5 +62,5 @@ public class IndexController {
     @DeleteMapping("/items/delete/{id}")
     void deleteItem(@PathVariable Long id) {
       repository.deleteById(id);
-  }
+    }
 }

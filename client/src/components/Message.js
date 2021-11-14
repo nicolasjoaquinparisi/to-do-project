@@ -1,20 +1,10 @@
 import { useEffect } from "react";
+import useMessage from "../hooks/useMessage";
 
 const Message = ({setShowMessage, type}) => {
 
-    const styles = {
-        'success': "bg-success",
-        'updated': "bg-success",
-        'error': "bg-danger",
-        'delete': "bg-warning"
-    }
-
-    const messages = {
-        'success': "New item added!",
-        'updated': "Item updated!",
-        'error': "You must enter the name of the task",
-        'delete': "Item deleted!"
-    }
+    const messageManager = useMessage();
+    const { getStyles, getMessage } = messageManager;
 
     useEffect(() => {
         setTimeout(() => {
@@ -22,16 +12,8 @@ const Message = ({setShowMessage, type}) => {
         }, 3000);
     }, []);
 
-    const getMessage = () => (
-        messages[type]
-    )
-
-    const getStyles = () => (
-        "text-white p-2 mt-1 mb-2 " + styles[type]
-    )
-
     return (
-        <p className={getStyles()}>{getMessage()}</p>
+        <p className={getStyles(type)}>{getMessage(type)}</p>
     );
 }
  

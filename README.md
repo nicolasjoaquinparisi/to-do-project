@@ -15,3 +15,4 @@ For the development of this application I used the following technologies:
 To be able to use this application it is necessary that you have installed:
 - Java 11
 - MySQL 8.0.27
+- Node v16.6.1

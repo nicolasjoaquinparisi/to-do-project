@@ -1,22 +1,16 @@
-import { useState, useContext, Fragment } from 'react';
+import { useState, useContext } from 'react';
 import { ItemsContext } from '../context/ItemsContext';
-
-import Message from './Message';
 
 import axios from 'axios';
 
-
-const NewItem = () => {
+const NewItem = ({setShowMessage, setError}) => {
 
     const { setResponse } = useContext(ItemsContext);
 
     const [item, setItem] = useState({
         name: '',
         completed: false
-    });
-
-    const [error, setError] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
+    });    
 
     const handleChange = e => {
         setItem({
@@ -58,36 +52,23 @@ const NewItem = () => {
     }
 
     return (
-        <Fragment>
-            {
-                showMessage ?
-                <Message
-                    isError={error}
-                    setShowMessage={setShowMessage}
-                    successMessage="New item added!"
-                />
-                :
-                null
-            }
+        <div className="mb-3 d-flex justify-content-between">
+            <input
+                type="text"
+                className="form-control w-75 me-3"
+                placeholder="Item name"
+                value={item.name}
+                name="name"
+                onChange={handleChange}
+            />
 
-            <div className="mb-3 d-flex justify-content-between">
-                <input
-                    type="text"
-                    className="form-control w-75 me-3"
-                    placeholder="Item name"
-                    value={item.name}
-                    name="name"
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="button"
-                    className="w-25 btn btn-primary"
-                    value="Add"
-                    onClick={handleClick}
-                />
-            </div>
-        </Fragment>
+            <input
+                type="button"
+                className="w-25 btn btn-primary"
+                value="Add"
+                onClick={handleClick}
+            />
+        </div>
     );
 }
  

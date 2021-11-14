@@ -71,10 +71,10 @@ const Edit = () => {
                 }
 
                 <h1
-                    className="fs-3 mb-4"
+                    className="fs-4 mb-4"
                 >
                     Editing task
-                    <span className="h1 fs-3 fst-italic text-secondary">"{itemTitle}"</span>
+                    <span className="h1 fs-4 fst-italic text-secondary">"{itemTitle}"</span>
                 </h1>
 
                 <input
@@ -89,14 +89,14 @@ const Edit = () => {
                 <div className="d-flex justify-content-end mt-3">
                     <input
                         type="button"
-                        className="btn btn-primary me-3"
+                        className="btn btn-primary w-25 me-3"
                         value="Save"
                         onClick={() => handleClick()}    
                     />
 
                     <input
                         type="button"
-                        className="btn btn-secondary"
+                        className="btn btn-secondary w-25"
                         value="Cancel"
                         onClick={() => {setItemToEdit({})}}
                     />

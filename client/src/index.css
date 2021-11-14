@@ -25,6 +25,10 @@ code {
   background-color: var(--dark-orange);
   border-color: var(--dark-orange);
 }
+.btn-primary:focus {
+  background-color: var(--dark-orange);
+  border-color: var(--dark-orange);
+}
 
 header {
   background-color: var(--orange);

@@ -11,7 +11,7 @@ const List = () => {
     const { items } = useContext(ItemsContext);
 
     const [showMessage, setShowMessage] = useState(false);
-    const [error, setError] = useState(false);
+    const [type, setType] = useState('');
 
     return (
         <div className="mt-5 p-3 border rounded bg-light shadow">
@@ -19,9 +19,8 @@ const List = () => {
             {
                 showMessage ?
                 <Message
-                    isError={error}
+                    type={type}
                     setShowMessage={setShowMessage}
-                    successMessage="New item added!"
                 />
                 :
                 null
@@ -35,6 +34,8 @@ const List = () => {
                         <Item
                             key={item.id}
                             item={item}
+                            setShowMessage={setShowMessage}
+                            setType={setType}
                         />
                     ))
                     :
@@ -45,7 +46,7 @@ const List = () => {
 
             <NewItem 
                 setShowMessage={setShowMessage}
-                setError={setError}
+                setType={setType}
             />
         </div>
     );

@@ -1,6 +1,20 @@
 import { useEffect } from "react";
 
-const Message = ({isError, setShowMessage, successMessage}) => {
+const Message = ({setShowMessage, type}) => {
+
+    const styles = {
+        'success': "bg-success",
+        'updated': "bg-success",
+        'error': "bg-danger",
+        'delete': "bg-warning"
+    }
+
+    const messages = {
+        'success': "New item added!",
+        'updated': "Item updated!",
+        'error': "You must enter the name of the task",
+        'delete': "Item deleted!"
+    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -8,11 +22,16 @@ const Message = ({isError, setShowMessage, successMessage}) => {
         }, 3000);
     }, []);
 
+    const getMessage = () => (
+        messages[type]
+    )
+
+    const getStyles = () => (
+        "text-white p-2 mt-1 mb-2 " + styles[type]
+    )
+
     return (
-        isError ?
-        <p className="bg-danger text-white p-2 mt-1 mb-2">You must enter the name of the task</p>
-        :
-        <p className="bg-success text-white p-2 mt-1 mb-2">{successMessage}</p>
+        <p className={getStyles()}>{getMessage()}</p>
     );
 }
  

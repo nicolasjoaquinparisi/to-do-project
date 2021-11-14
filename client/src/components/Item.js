@@ -1,23 +1,30 @@
 import { useContext } from 'react';
 
 import { EditContext } from '../context/EditContext';
+import { ItemsContext } from '../context/ItemsContext';
 
 import axios from 'axios';
 
-const Item = ({item}) => {
+const Item = ({item, setShowMessage, setType}) => {
 
     const { id, name, completed } = item;
 
     const { itemToEdit, setItemToEdit, setItemTitle } = useContext(EditContext);
 
-    const handleClick = () => {
+    const { setResponse } = useContext(ItemsContext);
 
-        (itemToEdit.id === item.id) ? setItemToEdit({}) : setItemToEdit(item);
+    const handleEditClick = () => {
+
+        (itemToEdit.id === item.id) ?
+            setItemToEdit({})
+        :
+            setItemToEdit(item);
+
         setItemTitle(item.name);
 
     }
 
-    const sendRequest = async() => {
+    const sendPutRequest = async() => {
         try {
             const itemUpdated = {
                 id: id,
@@ -35,9 +42,21 @@ const Item = ({item}) => {
         }
     }
 
-    const onChangeCheckboxClick = () => {
+    const sendDeleteRequest = async() => {
+        try {
 
-        sendRequest();
+            const url = `http://localhost:8080/items/delete//${id}`; 
+            const response = await axios.delete(url, id);
+            
+            setShowMessage(true);
+            setResponse(true);
+            setType('delete');
+
+            console.log(response);
+        }
+        catch {
+            
+        }
     }
 
     return (
@@ -50,7 +69,7 @@ const Item = ({item}) => {
                         id={id}
                         defaultChecked={completed}
                         value=""
-                        onClick={() => onChangeCheckboxClick()}
+                        onClick={() => sendPutRequest()}
                     />
 
                     <label
@@ -62,12 +81,22 @@ const Item = ({item}) => {
                 </div>
             </div>
 
-            <div className="col">
+            <div className="col-sm-2">
                 <input
                     className="text-primary border-0 bg-transparent"
                     type="button"
                     value="Edit"
-                    onClick={() => handleClick()}
+                    onClick={() => handleEditClick()}
+                >
+                </input>
+            </div>
+
+            <div className="col-sm-2">
+                <input
+                    className="text-danger border-0 bg-transparent"
+                    type="button"
+                    value="Delete"
+                    onClick={() => sendDeleteRequest()}
                 >
                 </input>
             </div>

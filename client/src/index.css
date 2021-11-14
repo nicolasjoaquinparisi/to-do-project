@@ -12,11 +12,6 @@ body {
   background-color: #ebebeb;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .btn-primary {
   background-color: var(--orange);
   border-color: var(--orange);
@@ -31,8 +26,12 @@ code {
 }
 
 header {
+  font-family: 'Bebas Neue', cursive;
   background-color: var(--orange);
-  padding: 1rem;
   color: var(--font-color);
+  padding: 1rem;  
   text-align: center;
+}
+header h1 {
+  font-size: 4rem;
 }

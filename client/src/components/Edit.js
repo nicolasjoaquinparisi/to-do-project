@@ -13,8 +13,8 @@ const Edit = () => {
 
     const { itemToEdit, setItemToEdit, itemTitle, setItemTitle } = useContext(EditContext);
 
-    const [error, setError] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
+    const [type, setType] = useState('');
 
     const handleChange = e => {
 
@@ -30,7 +30,7 @@ const Edit = () => {
             const response = await axios.put(url, itemToEdit);
 
             setResponse(true);
-            setError(false);
+            setType('updated');
 
             setItemTitle(itemToEdit.name);
 
@@ -46,11 +46,11 @@ const Edit = () => {
         setShowMessage(true);
 
         if (itemToEdit.name.trim() === '') {
-            setError(true);
+            setType('error');
             return;
         }
 
-        setError(false);
+        setType('');
         sendRequest();
 
     }
@@ -62,9 +62,8 @@ const Edit = () => {
                 {
                     showMessage ?
                     <Message
-                        isError={error}
                         setShowMessage={setShowMessage}
-                        successMessage="Item updated!"
+                        type={type}
                     />
                     :
                     null

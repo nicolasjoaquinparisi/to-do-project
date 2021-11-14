@@ -3,7 +3,7 @@ import { ItemsContext } from '../context/ItemsContext';
 
 import axios from 'axios';
 
-const NewItem = ({setShowMessage, setError}) => {
+const NewItem = ({setShowMessage, setType}) => {
 
     const { setResponse } = useContext(ItemsContext);
 
@@ -24,7 +24,7 @@ const NewItem = ({setShowMessage, setError}) => {
             const response = await axios.post(url, item);
 
             setResponse(true);
-            setError(false);
+            setType('success');
 
             setItem({
                 name: '',
@@ -43,11 +43,11 @@ const NewItem = ({setShowMessage, setError}) => {
         setShowMessage(true);
 
         if (item.name.trim() === '') {
-            setError(true);
+            setType('error');
             return;
         }
 
-        setError(false);
+        setType('');
         sendRequest();
     }
 
